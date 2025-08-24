@@ -139,9 +139,17 @@ def initialize_project(template_dir, target_dir, config):
         for file in files:
             if file.endswith('.pyc'):
                 continue
+            
+            # Skip the template's main README (keep it for template users only)
+            if file == 'README.md':
+                continue
                 
             src_path = os.path.join(root, file)
             rel_path = os.path.relpath(src_path, template_dir)
+            
+            # Handle special case: PROJECT_README.md becomes README.md in generated project
+            if file == 'PROJECT_README.md':
+                rel_path = rel_path.replace('PROJECT_README.md', 'README.md')
             
             # Handle placeholder filenames
             if '{{' in rel_path:
