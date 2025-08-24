@@ -21,13 +21,20 @@ Let's start!
 
 ### Step 2: AI Discovery Questions
 
-The AI should ask questions like:
+The AI should conduct a **conversational discovery session**, asking **one question at a time** and building on your answers:
 
-- What type of application are you building? (web app, API, tool, etc.)
-- Who are the main users and what do they need to do?
-- What are the core features you want to implement first?
-- Do you have any specific integrations or requirements?
-- What's your timeline and priorities?
+**Start simple:**
+
+- What are you trying to build?
+
+**Then explore:**
+
+- What should it do for users?
+- What's the most important feature?
+- Any specific technologies you want to use?
+- Building this for fun, learning, or solving a real problem?
+
+**Keep it conversational** - ask follow-up questions, clarify what they want, and build understanding naturally before moving to the next topic.
 
 ### Step 3: AI Creates Persistent Roadmap
 

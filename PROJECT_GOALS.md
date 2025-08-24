@@ -1,92 +1,38 @@
-# {{PROJECT_NAME}} - Project Goals & Requirements
+# {{PROJECT_NAME}} - Project Goals
 
-## Discovery Session Results
+## What We're Building
 
-_Captured from initial AI conversation - {{DISCOVERY_DATE}}_
+_Captured from discovery conversation - {{DISCOVERY_DATE}}_
 
-### Project Overview
+### The Idea
 
-**Description**: {{PROJECT_DESCRIPTION}}
-**Type**: {{PROJECT_TYPE}}
-**Target Users**: {{TARGET_USERS}}
+**What it is**: {{PROJECT_DESCRIPTION}}
+**What it does**: _[AI fills this based on conversation]_
 
-### Functional Requirements
+### Core Features
 
-_[AI fills this during discovery based on user responses]_
+1. _[Main feature from discovery]_
+2. _[Second feature from discovery]_
+3. _[Third feature from discovery]_
 
-#### Core Features
-
-1. _[Feature 1 from discovery]_
-2. _[Feature 2 from discovery]_
-3. _[Feature 3 from discovery]_
-
-#### User Stories
-
-- As a {{USER_TYPE}}, I want to {{ACTION}} so that {{BENEFIT}}
-- _[AI adds more based on discovery conversation]_
-
-### Technical Requirements
+### Technical Stuff
 
 **Framework**: {{FRAMEWORK}}
-**Database**: {{DATABASE}}
-**Authentication**: {{AUTH_METHOD}}
-**Deployment**: {{DEPLOYMENT_TARGET}}
+**Database**: _[If needed - AI fills based on conversation]_
+**APIs/Integrations**: _[AI fills if any mentioned]_
 
-#### Integration Requirements
+### Goals
 
-_[AI fills based on user needs]_
-
-#### Performance Requirements
-
-_[AI fills based on user expectations]_
-
-### Timeline & Priorities
-
-**Project Timeline**: {{TIMELINE}}
-**MVP Features**: {{MVP_FEATURES}}
-**Nice-to-Have**: {{NICE_TO_HAVE}}
-
-### Constraints & Considerations
-
-**Budget**: {{BUDGET_CONSTRAINTS}}
-**Team Size**: {{TEAM_SIZE}}
-**Technical Constraints**: {{TECH_CONSTRAINTS}}
-**Business Constraints**: {{BUSINESS_CONSTRAINTS}}
-
-## Success Criteria
-
-_[AI defines measurable goals based on discovery]_
-
-### Definition of Done
-
-- [ ] All core features implemented and tested
-- [ ] User acceptance criteria met
-- [ ] Performance benchmarks achieved
-- [ ] Documentation complete
-- [ ] Deployment successful
-
-### Key Metrics
-
-_[AI defines specific metrics to track success]_
-
-## Risk Assessment
-
-_[AI identifies potential risks and mitigation strategies]_
-
-### Technical Risks
-
-_[AI fills based on project complexity]_
-
-### Business Risks
-
-_[AI fills based on requirements and constraints]_
+**Learning**: _[What you want to learn from building this]_
+**Problem Solving**: _[What problem this solves]_
+**Timeline**: _[When you want it done - if mentioned]_
 
 ## Next Steps
 
-1. AI creates detailed development roadmap
-2. AI begins Phase 1 implementation
-3. Regular check-ins and roadmap updates
+1. AI creates development roadmap
+2. Start building Phase 1
+3. Iterate and improve
 
 ---
 
-_This document is maintained by AI and updated as project evolves_
+_This document gets updated as the project evolves_

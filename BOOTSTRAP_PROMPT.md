@@ -38,6 +38,12 @@
 3. **API**: Add endpoint to `{{MAIN_FILE}}`
 4. **Frontend**: Update templates/JS if needed
 
+## Discovery Process (IMPORTANT)
+
+**When starting a new project**: Conduct **conversational discovery** - ask ONE question at a time, listen to the answer, ask follow-ups, then move to the next topic. Fill PROJECT_GOALS.md as you learn, then create ROADMAP.md.
+
+**Don't**: Dump all questions at once or assume what the user wants.
+
 ## Documentation (Auto-Maintained)
 
 - **Primary**: `.github/copilot-instructions.md` (streamlined AI guide)
