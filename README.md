@@ -20,7 +20,29 @@ A Flask application template designed for AI-collaborative development with smar
 
 ## Quick Start
 
-### Option 1: Use as GitHub Template (Easy)
+git clone https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git
+git clone https://github.com/ksylvain77/ai-native-flask-template.git
+
+### Recommended: Generate Projects Outside the Template Directory
+
+**1. Download or clone this template repository somewhere safe (e.g., `~/templates/ai-native-flask-template`).**
+
+**2. Whenever you want to create a new project, go to the folder where you want your project to live (e.g., `~/projects/`):**
+
+```bash
+# Example: create a new project called my-awesome-project in ~/projects
+cd ~/projects
+python3 ~/templates/ai-native-flask-template/init_project.py my-awesome-project
+cd my-awesome-project
+./manage.sh setup
+./manage.sh start
+```
+
+**This keeps the template repo clean and lets you generate as many projects as you want, anywhere you want.**
+
+---
+
+### Option: Use as GitHub Template
 
 Click the green **"Use this template"** button above, then:
 
@@ -33,39 +55,6 @@ cd YOUR-REPO-NAME
 python3 init_project.py
 
 # 3. Start developing
-./manage.sh setup
-./manage.sh start
-```
-
-### Option 2: Clone and Use (Recommended for multiple projects)
-
-```bash
-# 1. Clone this template repository
-git clone https://github.com/ksylvain77/ai-native-flask-template.git
-
-# 2. Create a new project from the template
-cd ai-native-flask-template
-python3 init_project.py my-awesome-project
-
-# 3. Switch to your new project and start developing
-cd my-awesome-project
-./manage.sh setup
-./manage.sh start
-```
-
-### Option 3: Download and Use
-
-```bash
-# 1. Download the template
-wget https://github.com/ksylvain77/ai-native-flask-template/archive/main.zip
-unzip main.zip
-cd ai-native-flask-template-main
-
-# 2. Create your project
-python3 init_project.py my-awesome-project
-
-# 3. Start developing
-cd my-awesome-project
 ./manage.sh setup
 ./manage.sh start
 ```

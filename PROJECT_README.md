@@ -2,6 +2,14 @@
 
 {{PROJECT_DESCRIPTION}}
 
+## 🤖 AI-Guided Development
+
+**New to this project?** Start with AI collaboration:
+
+1. Open `AI_KICKOFF.md` in your IDE
+2. Follow the AI discovery process to create your development roadmap
+3. Execute features one-by-one using the branch automation
+
 ## Quick Start
 
 ```bash
@@ -11,7 +19,8 @@
 # Start the service
 ./manage.sh start
 
-# Run tests
+
+# Run tests (enforces 4-phase coverage)
 ./scripts/run-tests.sh
 
 # Development workflow
@@ -42,6 +51,7 @@ tests/
 scripts/
   ├── create-branch.sh       # AI workflow: create feature branch
   ├── merge-to-main.sh       # AI workflow: test + merge + cleanup
+  ├── check-test-coverage.py # Enforces 4-phase test coverage (auto-fails if missing)
   └── run-tests.sh           # Comprehensive test runner
 ```
 
@@ -56,12 +66,23 @@ scripts/
 - **Version**: {{PROJECT_VERSION}}
 - **Last Updated**: {{LAST_UPDATED}}
 
+## 4-Phase Test Coverage Enforcement
+
+All new features/endpoints must be covered by tests in all four phases:
+
+- **Backend**: Core logic in `modules/`
+- **API**: Endpoints in `{{MAIN_FILE}}`
+- **Contract**: Data contract/validation
+- **Frontend**: UI or simulated client
+
+The test runner (`./scripts/run-tests.sh`) will fail if any new function or endpoint is missing from any test phase. See `scripts/check-test-coverage.py` for details.
+
 ## Contributing
 
 This project follows the **"Merge as You Go"** philosophy for AI collaboration:
 
 1. AI creates feature branches using `./scripts/create-branch.sh`
-2. AI implements and tests features
+2. AI implements and tests features (all 4 phases required)
 3. User approves changes
 4. AI merges using `./scripts/merge-to-main.sh` (auto: test → commit → merge → cleanup)
 

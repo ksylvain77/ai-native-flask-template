@@ -125,53 +125,63 @@ def initialize_project(template_dir, target_dir, config):
     """Initialize a new project from template"""
     print(f"\n🚀 Initializing project in {target_dir}")
     print("=" * 50)
-    
+
     # Create target directory
     os.makedirs(target_dir, exist_ok=True)
-    
+
+    # Initialize git repo if not present
+    git_dir = os.path.join(target_dir, '.git')
+    if not os.path.exists(git_dir):
+        import subprocess
+        try:
+            subprocess.run(['git', 'init'], cwd=target_dir, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            print("✅ Initialized empty git repository.")
+        except Exception as e:
+            print(f"⚠️  Could not initialize git repository: {e}")
+
     # Copy template files
     import shutil
-    
+
     for root, dirs, files in os.walk(template_dir):
         # Skip __pycache__ and .git directories
         dirs[:] = [d for d in dirs if d not in ['__pycache__', '.git', '.pytest_cache']]
-        
+
         for file in files:
             if file.endswith('.pyc'):
                 continue
-            
+
             # Skip the template's main README (keep it for template users only)
             if file == 'README.md':
                 continue
-                
+
             src_path = os.path.join(root, file)
             rel_path = os.path.relpath(src_path, template_dir)
-            
+
             # Handle special case: PROJECT_README.md becomes README.md in generated project
             if file == 'PROJECT_README.md':
                 rel_path = rel_path.replace('PROJECT_README.md', 'README.md')
-            
+
             # Handle placeholder filenames
             if '{{' in rel_path:
                 # Replace placeholders in path
                 for key, value in config.items():
                     rel_path = rel_path.replace(f"{{{{{key}}}}}", value)
-            
+
             dst_path = os.path.join(target_dir, rel_path)
-            
+
             # Create directory if needed
             os.makedirs(os.path.dirname(dst_path), exist_ok=True)
-            
+
             # Copy file
             shutil.copy2(src_path, dst_path)
-            
+
             # Replace placeholders in content (check the destination filename, not source)
             dst_filename = os.path.basename(dst_path)
             if dst_filename.endswith(('.md', '.py', '.sh', '.txt', '.json', '.yml', '.yaml')):
                 replace_placeholders(dst_path, config)
-            
+
             print(f"✅ {rel_path}")
-    
+
     # Make scripts executable
     scripts_dir = os.path.join(target_dir, 'scripts')
     if os.path.exists(scripts_dir):
@@ -179,18 +189,22 @@ def initialize_project(template_dir, target_dir, config):
             if script.endswith('.sh'):
                 script_path = os.path.join(scripts_dir, script)
                 os.chmod(script_path, 0o755)
-    
+
     # Make manage.sh executable
     manage_script = os.path.join(target_dir, 'manage.sh')
     if os.path.exists(manage_script):
         os.chmod(manage_script, 0o755)
-    
+
     print(f"\n🎉 Project initialized successfully!")
     print(f"📁 Location: {target_dir}")
     print(f"\n🚀 Next steps:")
     print(f"   cd {target_dir}")
     print(f"   ./manage.sh setup")
     print(f"   ./manage.sh start")
+    print(f"\n🤖 AI-Guided Development:")
+    print(f"   Open in your IDE and see AI_KICKOFF.md")
+    print(f"   Let AI read BOOTSTRAP_PROMPT.md and create your roadmap!")
+    print(f"   Each feature will use: ./scripts/create-branch.sh")
 
 def main():
     """Main initializer"""

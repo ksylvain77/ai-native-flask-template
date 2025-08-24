@@ -22,6 +22,13 @@ fi
 
 echo "✅ $PROJECT_NAME is already running and healthy"
 
+
+# Enforce 4-phase test coverage before running tests
+if [ -f "scripts/check-test-coverage.py" ]; then
+    echo "🔒 Enforcing 4-phase test coverage..."
+    .venv/bin/python scripts/check-test-coverage.py
+fi
+
 # Run test suite
 echo "🚀 Running comprehensive test suite..."
 if [ -f ".venv/bin/python" ] && [ -f "tests/test_suite.py" ]; then
