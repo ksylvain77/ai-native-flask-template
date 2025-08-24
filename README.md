@@ -11,17 +11,46 @@ A project template designed for AI-collaborative development with smart defaults
 - 🔄 **Automated Workflows**: Git branching, testing, and merging scripts
 - 📦 **Complete Setup**: Virtual environment, dependencies, and structure
 
+## Prerequisites
+
+- Python 3.8+ installed on your system
+- Git (for cloning and project workflows)
+- Terminal/Command line access
+
 ## Quick Start
 
+### Option 1: Clone and Use (Recommended)
 ```bash
-# Create a new project
+# 1. Clone this template repository
+git clone https://github.com/ksylvain77/ai-native-project-template.git
+
+# 2. Create a new project from the template
+cd ai-native-project-template
 python3 init_project.py my-awesome-project
 
-# Follow the generated instructions
+# 3. Switch to your new project and start developing
 cd my-awesome-project
 ./manage.sh setup
 ./manage.sh start
 ```
+
+### Option 2: Download and Use
+```bash
+# 1. Download the template
+wget https://github.com/ksylvain77/ai-native-project-template/archive/main.zip
+unzip main.zip
+cd ai-native-project-template-main
+
+# 2. Create your project
+python3 init_project.py my-awesome-project
+
+# 3. Start developing
+cd my-awesome-project
+./manage.sh setup
+./manage.sh start
+```
+
+**That's it!** Your project will be running at `http://localhost:5000` with a complete development environment ready for AI collaboration.
 
 ## What Gets Generated
 
