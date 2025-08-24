@@ -17,10 +17,13 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 class TestSuite:
     """
     Comprehensive testing suite template following 4-phase methodology:
-    Phase 1: Backend Function Testing (MANDATORY)
+    Phase 1: Backend Function Testing (MANDATORY for business logic)
     Phase 2: API Integration Testing (MANDATORY) 
     Phase 2.5: Data Contract Validation (MANDATORY)
     Phase 3: Frontend Integration Testing (MANDATORY)
+    
+    Note: Utility functions (format_response, sanitize_filename, etc.) 
+    are automatically excluded from mandatory testing requirements.
     """
     
     def __init__(self, base_url: str = "{{SERVER_URL}}"):

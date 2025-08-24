@@ -27,7 +27,9 @@ This is a **{{PROJECT_TYPE}}** project using AI-Native Development methodology.
 - **Quick Tests**: `.venv/bin/python tests/quick_test.py` (development)
 - **Full Tests**: `./scripts/run-tests.sh` (pre-commit)
 - **4-Phase Testing**: Backend → API → Contract → Frontend
-- **Completion Criteria**: 100% test pass rate required
+- **Smart Coverage**: Only business logic functions require comprehensive testing
+- **Auto-Exclusion**: Utility functions (format_response, sanitize_filename, etc.) automatically excluded
+- **Completion Criteria**: 100% test pass rate for business logic required
 
 ### **Environment Requirements**
 

@@ -3,11 +3,11 @@
 # Update roadmap files with current project status
 # Usage: ./scripts/update-roadmap.sh [branch-name] [description] [status]
 
-ROADMAP_FILE="ROADMAP.md"
-GOALS_FILE="PROJECT_GOALS.md"
+ROADMAP_FILE="${ROADMAP_FILE:-ROADMAP.md}"  # Use env var if set, otherwise default
+GOALS_FILE="${GOALS_FILE:-PROJECT_GOALS.md}"
 
 if [ ! -f "$ROADMAP_FILE" ]; then
-    echo "❌ ROADMAP.md not found. Run this from project root."
+    echo "❌ $ROADMAP_FILE not found. Run this from project root."
     exit 1
 fi
 
@@ -22,13 +22,36 @@ update_roadmap_status() {
     local status="$2"
     
     if [ "$status" = "completed" ]; then
-        # Mark branch as completed
-        sed -i "s/- \[ \] \*\*${branch}\*\*/- [x] **${branch}**/" "$ROADMAP_FILE"
-        echo "✅ Marked $branch as completed in roadmap"
+        # Simple and reliable approach - just replace checkbox on lines containing the branch
+        if grep -q "${branch}" "$ROADMAP_FILE"; then
+            # First try exact pattern match
+            if sed -i "s/^- \[ \] \*\*${branch}\*\*/- [x] **${branch}**/" "$ROADMAP_FILE"; then
+                echo "✅ Marked $branch as completed in roadmap"
+            else
+                # Fallback: find line with branch name and update checkbox
+                sed -i "/${branch}/s/^- \[ \]/- [x]/" "$ROADMAP_FILE"
+                echo "✅ Marked $branch as completed in roadmap (pattern match)"
+            fi
+        else
+            echo "⚠️  Could not find roadmap entry for: $branch"
+            echo "💡 Available entries:"
+            grep -n "^- \[ \]" "$ROADMAP_FILE" | head -3
+        fi
+        
     elif [ "$status" = "in-progress" ]; then
-        # Ensure branch is in progress (unchecked)
-        sed -i "s/- \[x\] \*\*${branch}\*\*/- [ ] **${branch}**/" "$ROADMAP_FILE"
-        echo "🔄 Marked $branch as in-progress in roadmap"
+        # Reverse operation - uncheck completed items
+        if grep -q "${branch}" "$ROADMAP_FILE"; then
+            # First try exact pattern match
+            if sed -i "s/^- \[x\] \*\*${branch}\*\*/- [ ] **${branch}**/" "$ROADMAP_FILE"; then
+                echo "🔄 Marked $branch as in-progress in roadmap"
+            else
+                # Fallback: find line with branch name and update checkbox
+                sed -i "/${branch}/s/^- \[x\]/- [ ]/" "$ROADMAP_FILE"
+                echo "🔄 Marked $branch as in-progress in roadmap (pattern match)"
+            fi
+        else
+            echo "⚠️  Could not find roadmap entry for: $branch"
+        fi
     fi
 }
 
