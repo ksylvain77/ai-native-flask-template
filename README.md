@@ -1,71 +1,118 @@
-# {{PROJECT_NAME}}
+# AI-Native Project Template
 
-{{PROJECT_DESCRIPTION}}
+A project template designed for AI-collaborative development with smart defaults, automated workflows, and comprehensive testing.
+
+## Features
+
+- 🤖 **AI-Optimized**: Structured for seamless AI collaboration
+- 🚀 **Smart Defaults**: Only asks for project name - handles the rest
+- 📁 **Project-Based Naming**: Uses your project name instead of generic `main.py`
+- 🧪 **4-Phase Testing**: Backend → API → Contract → Frontend
+- 🔄 **Automated Workflows**: Git branching, testing, and merging scripts
+- 📦 **Complete Setup**: Virtual environment, dependencies, and structure
 
 ## Quick Start
 
 ```bash
-# Setup (one time)
+# Create a new project
+python3 init_project.py my-awesome-project
+
+# Follow the generated instructions
+cd my-awesome-project
 ./manage.sh setup
-
-# Start the service
 ./manage.sh start
-
-# Run tests
-./scripts/run-tests.sh
-
-# Development workflow
-./scripts/create-branch.sh feature-name "Description"
-# ... make changes ...
-./scripts/merge-to-main.sh "Final commit message"
 ```
 
-## AI-Native Development
-
-This project uses an **AI-Native Development Workflow**:
-
-- **Bootstrap Prompt**: `BOOTSTRAP_PROMPT.md` - Quick context for AI collaboration
-- **Automation Scripts**: `scripts/` - Consistent Git workflow and testing
-- **DRY Testing**: Dictionary-based test configuration
-- **Auto-Documentation**: README updates with live system data
-
-## Architecture
+## What Gets Generated
 
 ```
-{{MAIN_FILE}}                 # Main application entry point
-modules/                      # Core business logic
-  ├── {{MODULE_1}}.py         # {{MODULE_1_DESC}}
-  └── {{MODULE_2}}.py         # {{MODULE_2_DESC}}
-templates/                    # UI templates (if web app)
-static/                       # Static assets (if web app)
-tests/
-  ├── quick_test.py          # Fast development tests (2s)
-  └── test_suite.py          # Comprehensive testing (30s+)
-scripts/
-  ├── create-branch.sh       # AI workflow: create feature branch
-  ├── merge-to-main.sh       # AI workflow: test + merge + cleanup
-  └── run-tests.sh           # Comprehensive test runner
+my-awesome-project/
+├── my_awesome_project.py    # Main Flask application (named after your project)
+├── modules/
+│   ├── core.py             # Core business logic
+│   └── utils.py            # Utility functions
+├── tests/
+│   ├── quick_test.py       # Fast development tests (2s)
+│   └── test_suite.py       # Comprehensive testing (30s+)
+├── scripts/
+│   ├── create-branch.sh    # AI workflow: create feature branch
+│   ├── merge-to-main.sh    # AI workflow: test + merge + cleanup
+│   └── run-tests.sh        # Comprehensive test runner
+├── .github/
+│   └── copilot-instructions.md  # AI collaboration guide
+├── requirements.txt        # Python dependencies
+├── manage.sh              # Project management script
+├── .gitignore             # Comprehensive Git ignore rules
+└── README.md              # Project-specific documentation
 ```
+
+## AI-Native Development Workflow
+
+The generated projects follow an AI-collaborative workflow:
+
+1. **AI creates feature branch**: `./scripts/create-branch.sh feature-name "Description"`
+2. **AI implements feature** with immediate testing feedback
+3. **User approves** the implementation
+4. **AI merges automatically**: `./scripts/merge-to-main.sh "Final message"`
+
+### Key Principles
+
+- **Merge as You Go**: Main branch always working, immediate integration
+- **Test-Driven**: 100% test pass rate required before merge
+- **Documentation-Driven**: Auto-maintained docs with live system data
+
+## Template Customization
+
+The template uses placeholder replacement for full customization:
+
+- `{{PROJECT_NAME}}` → Your project name
+- `{{PROJECT_DESCRIPTION}}` → Your project description
+- `{{MAIN_FILE}}` → `your_project_name.py`
+- `{{SERVICE_NAME}}` → `your_project_name`
+
+All generated files are fully functional with proper Flask setup, testing framework, and development scripts.
 
 ## Requirements
 
 - Python 3.8+
-- Virtual environment (`.venv/`)
-- {{ADDITIONAL_REQUIREMENTS}}
+- Git (for generated project workflows)
 
-## Project Status
+## Generated Project Features
 
-- **Status**: {{PROJECT_STATUS}}
-- **Version**: {{PROJECT_VERSION}}
-- **Last Updated**: {{LAST_UPDATED}}
+Each generated project includes:
+
+- ✅ **Working Flask application** with health endpoints
+- ✅ **Complete test suite** with 4-phase methodology
+- ✅ **Virtual environment setup** with dependencies
+- ✅ **Git workflow automation** for AI collaboration
+- ✅ **Proper .gitignore** for Python projects
+- ✅ **AI collaboration guides** in `.github/copilot-instructions.md`
+
+## Examples
+
+```bash
+# Create a blog API
+python3 init_project.py blog-api
+# Generates: blog_api.py as main file
+
+# Create a data processor
+python3 init_project.py data-processor
+# Generates: data_processor.py as main file
+
+# Create any project
+python3 init_project.py my-project
+# Generates: my_project.py as main file
+```
+
+The template automatically converts your project name into valid Python module names and file structures.
 
 ## Contributing
 
-This project follows the **"Merge as You Go"** philosophy for AI collaboration:
+This template itself follows the AI-native methodology. To improve the template:
 
-1. AI creates feature branches using `./scripts/create-branch.sh`
-2. AI implements and tests features
-3. User approves changes  
-4. AI merges using `./scripts/merge-to-main.sh` (auto: test → commit → merge → cleanup)
+1. Create issues for template improvements
+2. Test changes with multiple generated projects
+3. Ensure 100% success rate for generated project workflows
+4. Update documentation to reflect changes
 
-**Key Principle**: Main branch always working, immediate integration, clean history.
+**Philosophy**: The template should generate projects that work perfectly out-of-the-box with zero manual intervention required.
