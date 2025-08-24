@@ -28,6 +28,11 @@ git pull origin main
 echo "🆕 Creating feature branch: $BRANCH_NAME"
 git checkout -b "$BRANCH_NAME"
 
+# Update roadmap to mark branch as in progress
+if [ -f "scripts/update-roadmap.sh" ]; then
+    ./scripts/update-roadmap.sh "$BRANCH_NAME" "$COMMIT_MESSAGE" "in-progress"
+fi
+
 echo ""
 echo "✅ Development branch ready!"
 echo "👨‍💻 Make your changes, then when ready, use:"

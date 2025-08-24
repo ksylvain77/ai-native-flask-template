@@ -94,6 +94,22 @@ def get_project_config(target_dir, user_config):
     config['STATUS_FIELD_3'] = "Testing"
     config['STATUS_VALUE_3'] = "Template Ready"
     
+    # Roadmap placeholders - these will be filled by AI during discovery
+    from datetime import datetime
+    config['DISCOVERY_DATE'] = datetime.now().strftime("%Y-%m-%d")
+    config['TARGET_USERS'] = "*[To be determined during AI discovery]*"
+    config['FRAMEWORK'] = "Flask"
+    config['DATABASE'] = "*[To be determined during AI discovery]*"
+    config['AUTH_METHOD'] = "*[To be determined during AI discovery]*"
+    config['DEPLOYMENT_TARGET'] = "*[To be determined during AI discovery]*"
+    config['MVP_FEATURES'] = "*[To be determined during AI discovery]*"
+    config['NICE_TO_HAVE'] = "*[To be determined during AI discovery]*"
+    config['TIMELINE'] = "*[To be determined during AI discovery]*"
+    config['BUDGET_CONSTRAINTS'] = "*[To be determined during AI discovery]*"
+    config['TEAM_SIZE'] = "*[To be determined during AI discovery]*"
+    config['TECH_CONSTRAINTS'] = "*[To be determined during AI discovery]*"
+    config['BUSINESS_CONSTRAINTS'] = "*[To be determined during AI discovery]*"
+    
     print(f"\n✅ Project: {config['PROJECT_NAME']}")
     print(f"✅ Type: {config['PROJECT_TYPE']}")
     print(f"✅ Main file: {config['MAIN_FILE']}")

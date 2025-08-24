@@ -12,8 +12,9 @@ Hi! I just created a new project from the AI-native template.
 Please:
 1. Read the BOOTSTRAP_PROMPT.md file to understand the project context
 2. Ask me discovery questions to understand what I want to build
-3. Create a development roadmap broken into feature chunks
-4. Each chunk should be sized for one branch using our automation
+3. Fill out PROJECT_GOALS.md with my answers
+4. Create a development roadmap in ROADMAP.md broken into feature chunks
+5. Each chunk should be sized for one branch using our automation
 
 Let's start!
 ```
@@ -28,9 +29,15 @@ The AI should ask questions like:
 - Do you have any specific integrations or requirements?
 - What's your timeline and priorities?
 
-### Step 3: AI Creates Roadmap
+### Step 3: AI Creates Persistent Roadmap
 
-The AI will generate a roadmap like:
+The AI will:
+
+1. **Fill PROJECT_GOALS.md** with discovery answers
+2. **Create ROADMAP.md** with detailed development plan
+3. **Update files** as project progresses
+
+Example roadmap structure:
 
 ```
 Development Roadmap for [Your Project]
@@ -49,6 +56,8 @@ Phase 3: Enhancement
 ├── Branch 7: "add-advanced-features" - Additional functionality
 └── Branch 8: "polish-and-deploy" - Final touches and deployment
 ```
+
+These roadmaps are **persistent** and **living documents** that the AI maintains throughout development.
 
 ### Step 4: Execute Roadmap
 

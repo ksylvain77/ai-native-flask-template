@@ -73,6 +73,11 @@ git merge "$CURRENT_BRANCH"
 
 echo "☁️  Pushing to main..."
 git push origin main
+
+# Update roadmap to mark branch as completed
+if [ -f "scripts/update-roadmap.sh" ]; then
+    ./scripts/update-roadmap.sh "$CURRENT_BRANCH" "$COMMIT_MESSAGE" "completed"
+fi
 echo ""
 
 # Step 5: Cleanup
