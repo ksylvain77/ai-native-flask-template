@@ -1,9 +1,10 @@
-# AI-Native Project Template
+# AI-Native Flask Template
 
-A project template designed for AI-collaborative development with smart defaults, automated workflows, and comprehensive testing.
+A Flask application template designed for AI-collaborative development with smart defaults, automated workflows, and comprehensive testing.
 
 ## Features
 
+- 🌐 **Production-Ready Flask**: Complete Flask app with health endpoints and proper structure
 - 🤖 **AI-Optimized**: Structured for seamless AI collaboration
 - 🚀 **Smart Defaults**: Only asks for project name - handles the rest
 - 📁 **Project-Based Naming**: Uses your project name instead of generic `main.py`
@@ -20,12 +21,13 @@ A project template designed for AI-collaborative development with smart defaults
 ## Quick Start
 
 ### Option 1: Clone and Use (Recommended)
+
 ```bash
 # 1. Clone this template repository
-git clone https://github.com/ksylvain77/ai-native-project-template.git
+git clone https://github.com/ksylvain77/ai-native-flask-template.git
 
 # 2. Create a new project from the template
-cd ai-native-project-template
+cd ai-native-flask-template
 python3 init_project.py my-awesome-project
 
 # 3. Switch to your new project and start developing
@@ -35,11 +37,12 @@ cd my-awesome-project
 ```
 
 ### Option 2: Download and Use
+
 ```bash
 # 1. Download the template
-wget https://github.com/ksylvain77/ai-native-project-template/archive/main.zip
+wget https://github.com/ksylvain77/ai-native-flask-template/archive/main.zip
 unzip main.zip
-cd ai-native-project-template-main
+cd ai-native-flask-template-main
 
 # 2. Create your project
 python3 init_project.py my-awesome-project
@@ -122,18 +125,18 @@ Each generated project includes:
 ```bash
 # Create a blog API
 python3 init_project.py blog-api
-# Generates: blog_api.py as main file
+# Generates: blog_api.py as Flask main file
 
-# Create a data processor
-python3 init_project.py data-processor
-# Generates: data_processor.py as main file
+# Create a user management service
+python3 init_project.py user-service
+# Generates: user_service.py as Flask main file
 
-# Create any project
-python3 init_project.py my-project
-# Generates: my_project.py as main file
+# Create any Flask web service
+python3 init_project.py my-api
+# Generates: my_api.py as Flask main file
 ```
 
-The template automatically converts your project name into valid Python module names and file structures.
+Each generated project is a complete Flask application with endpoints, testing, and AI-collaborative workflows.
 
 ## Contributing
 

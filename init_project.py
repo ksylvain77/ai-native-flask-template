@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-AI-Native Project Template Initializer
+AI-Native Flask Template Initializer
 
-This script sets up a new project with AI-collaborative development patterns.
+This script sets up a new Flask project with AI-collaborative development patterns.
 It uses smart defaults so you can start building immediately without needing
 to know your final architecture upfront.
 
@@ -22,7 +22,7 @@ from pathlib import Path
 
 def get_user_input():
     """Get minimal project configuration with smart defaults"""
-    print("🤖 AI-Native Project Template Initializer")
+    print("🤖 AI-Native Flask Template Initializer")
     print("=" * 50)
     print("✨ Using smart defaults - just press Enter to accept")
     print("💡 Want to explore first? Type 'skip' for any question to use all defaults")
@@ -61,7 +61,7 @@ def get_project_config(target_dir, user_config):
     config = user_config.copy()
     
     # Smart defaults for everything else
-    config['PROJECT_TYPE'] = "Python application"
+    config['PROJECT_TYPE'] = "Flask application"
     
     # Use the PROJECT_NAME they entered to create the main file name
     project_name = config['PROJECT_NAME']
