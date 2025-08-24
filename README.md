@@ -34,8 +34,8 @@ git clone https://github.com/ksylvain77/ai-native-flask-template.git
 cd ~/projects
 python3 ~/templates/ai-native-flask-template/init_project.py my-awesome-project
 cd my-awesome-project
-./manage.sh setup
-./manage.sh start
+python manage.py setup
+python manage.py start
 ```
 
 **This keeps the template repo clean and lets you generate as many projects as you want, anywhere you want.**
@@ -55,8 +55,8 @@ cd YOUR-REPO-NAME
 python3 init_project.py
 
 # 3. Start developing
-./manage.sh setup
-./manage.sh start
+python manage.py setup
+python manage.py start
 ```
 
 **That's it!** Your project will be running at `http://localhost:5000` with a complete development environment ready for AI collaboration.
