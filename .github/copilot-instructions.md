@@ -11,21 +11,35 @@ This is a **{{PROJECT_TYPE}}** project using AI-Native Development methodology.
 ### **Git Workflow (REQUIRED)**
 
 ```bash
-# 1. AI creates branch using automation
+# Cross-Platform Commands:
+
+# Linux/macOS:
 ./scripts/create-branch.sh feature-name "Description of work"
+# OR: python scripts/create-branch.py feature-name "Description of work"
+
+# Windows:
+scripts\create-branch.bat feature-name "Description of work"
 
 # 2. AI implements feature following DRY patterns
 
 # 3. AI shows user results and waits for approval
 
-# 4. AI finalizes using automation
+# Linux/macOS:
 ./scripts/merge-to-main.sh "Final commit message"
+# OR: python scripts/merge-to-main.py "Final commit message"
+
+# Windows:
+scripts\merge-to-main.bat "Final commit message"
 ```
 
 ### **Testing Requirements (MANDATORY)**
 
-- **Quick Tests**: `.venv/bin/python tests/quick_test.py` (development)
-- **Full Tests**: `./scripts/run-tests.sh` (pre-commit)
+- **Quick Tests**:
+  - Linux/macOS: `.venv/bin/python tests/quick_test.py`
+  - Windows: `.venv\Scripts\python.exe tests\quick_test.py`
+- **Full Tests**:
+  - Linux/macOS: `./scripts/run-tests.sh` or `python scripts/run-tests.py`
+  - Windows: `scripts\run-tests.bat`
 - **4-Phase Testing**: Backend → API → Contract → Frontend
 - **Smart Coverage**: Only business logic functions require comprehensive testing
 - **Auto-Exclusion**: Utility functions (format_response, sanitize_filename, etc.) automatically excluded
@@ -33,11 +47,19 @@ This is a **{{PROJECT_TYPE}}** project using AI-Native Development methodology.
 
 ### **Environment Requirements**
 
-- **Python**: Always use `.venv/bin/python` (never system python)
+- **Python**:
+  - Linux/macOS: Always use `.venv/bin/python` (never system python)
+  - Windows: Use `.venv\Scripts\python.exe`
 - **Server**: {{SERVER_URL}}
-- **Port Check**: Quick validation - `netstat -tuln | grep :{{PORT}}` (should be empty)
-- **Setup**: `./manage.sh setup` (one-time)
-- **Start**: `./manage.sh start`
+- **Port Check**:
+  - Linux/macOS: `netstat -tuln | grep :{{PORT}}` (should be empty)
+  - Windows: `netstat -an | findstr :{{PORT}}` (should be empty)
+- **Setup**:
+  - Linux/macOS: `./manage.sh setup` or `python manage.py setup`
+  - Windows: `manage.bat setup`
+- **Start**:
+  - Linux/macOS: `./manage.sh start` or `python manage.py start`
+  - Windows: `manage.bat start`
 
 ## Core Philosophy
 
