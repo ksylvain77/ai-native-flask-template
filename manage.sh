@@ -50,6 +50,21 @@ setup_environment() {
     echo "💡 Next: ./manage.sh start"
 }
 
+find_available_port() {
+    local start_port=$1
+    local port=$start_port
+    
+    while netstat -tuln 2>/dev/null | grep -q ":$port "; do
+        port=$((port + 1))
+        if [ $port -gt $((start_port + 100)) ]; then
+            echo "❌ Could not find available port after checking 100 ports starting from $start_port"
+            exit 1
+        fi
+    done
+    
+    echo $port
+}
+
 start_service() {
     echo "🚀 Starting $SERVICE_NAME..."
     
@@ -58,7 +73,12 @@ start_service() {
         PID=$(cat "${SERVICE_NAME}.pid")
         if ps -p $PID > /dev/null 2>&1; then
             echo "⚠️  $SERVICE_NAME is already running (PID: $PID)"
-            echo "🌐 Access at: {{SERVER_URL}}"
+            if [ -f ".env_port" ]; then
+                ACTUAL_PORT=$(cat .env_port)
+                echo "🌐 Access at: http://localhost:$ACTUAL_PORT"
+            else
+                echo "🌐 Access at: {{SERVER_URL}}"
+            fi
             return 0
         else
             echo "🧹 Removing stale PID file"
@@ -66,7 +86,18 @@ start_service() {
         fi
     fi
     
-    # Start the service
+    # Find available port
+    AVAILABLE_PORT=$(find_available_port $PORT)
+    if [ "$AVAILABLE_PORT" != "$PORT" ]; then
+        echo "🔄 Port $PORT is busy, using port $AVAILABLE_PORT instead"
+        echo $AVAILABLE_PORT > .env_port
+    else
+        echo "✅ Using default port $PORT"
+        rm -f .env_port
+    fi
+    
+    # Start the service with the available port
+    export PORT=$AVAILABLE_PORT
     .venv/bin/python $PYTHON_COMMAND &
     PID=$!
     echo $PID > "${SERVICE_NAME}.pid"
@@ -75,7 +106,8 @@ start_service() {
     sleep 2
     if ps -p $PID > /dev/null 2>&1; then
         echo "✅ $SERVICE_NAME started successfully (PID: $PID)"
-        echo "🌐 Access at: {{SERVER_URL}}"
+        echo "🌐 Server: http://localhost:$AVAILABLE_PORT"
+        echo "🔍 Health check: http://localhost:$AVAILABLE_PORT/health"
     else
         echo "❌ Failed to start $SERVICE_NAME"
         rm -f "${SERVICE_NAME}.pid"
@@ -104,9 +136,9 @@ stop_service() {
 check_status() {
     # Check port availability
     if netstat -tuln 2>/dev/null | grep -q ":$PORT "; then
-        echo "🔌 Port $PORT: In use"
+        echo "🔌 Default port $PORT: In use"
     else
-        echo "🔌 Port $PORT: Available"
+        echo "🔌 Default port $PORT: Available"
     fi
     
     # Check service status
@@ -114,7 +146,14 @@ check_status() {
         PID=$(cat "${SERVICE_NAME}.pid")
         if ps -p $PID > /dev/null 2>&1; then
             echo "✅ $SERVICE_NAME is running (PID: $PID)"
-            echo "🌐 Access at: {{SERVER_URL}}"
+            if [ -f ".env_port" ]; then
+                ACTUAL_PORT=$(cat .env_port)
+                echo "🌐 Server: http://localhost:$ACTUAL_PORT"
+                echo "🔍 Health check: http://localhost:$ACTUAL_PORT/health"
+            else
+                echo "🌐 Server: {{SERVER_URL}}"
+                echo "🔍 Health check: {{SERVER_URL}}/health"
+            fi
         else
             echo "❌ $SERVICE_NAME is not running (stale PID file)"
             rm -f "${SERVICE_NAME}.pid"
@@ -134,7 +173,7 @@ view_logs() {
 
 clean_up() {
     echo "🧹 Cleaning up temporary files..."
-    rm -f *.pid *.log
+    rm -f *.pid *.log .env_port
     rm -rf __pycache__/ */__pycache__/
     rm -rf .pytest_cache/
     echo "✅ Cleanup complete"
