@@ -20,7 +20,24 @@ A Flask application template designed for AI-collaborative development with smar
 
 ## Quick Start
 
-### Option 1: Clone and Use (Recommended)
+### Option 1: Use as GitHub Template (Easy)
+
+Click the green **"Use this template"** button above, then:
+
+```bash
+# 1. Clone your new repository
+git clone https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git
+cd YOUR-REPO-NAME
+
+# 2. Initialize your project (this transforms the template into a working app)
+python3 init_project.py
+
+# 3. Start developing
+./manage.sh setup
+./manage.sh start
+```
+
+### Option 2: Clone and Use (Recommended for multiple projects)
 
 ```bash
 # 1. Clone this template repository
@@ -36,7 +53,7 @@ cd my-awesome-project
 ./manage.sh start
 ```
 
-### Option 2: Download and Use
+### Option 3: Download and Use
 
 ```bash
 # 1. Download the template
