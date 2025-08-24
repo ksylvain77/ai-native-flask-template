@@ -52,7 +52,7 @@ class TestSuite:
                 "function": "get_status",   # Customize
                 "assertions": [
                     "assert 'status' in result",
-                    "assert result['status'] == 'ok'"
+                    "assert result['status'] == 'running'"
                 ]
             },
             # Add more backend tests here

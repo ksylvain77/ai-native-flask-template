@@ -48,10 +48,29 @@ def get_user_input():
     else:
         config['PROJECT_DESCRIPTION'] = "A Python project"
     
+    return config
+
+def get_project_config(target_dir, user_config):
+    """Generate full project configuration based on target directory and user input"""
+    import os
+    import re
+    
+    # Use target directory name for repo/service naming
+    target_basename = os.path.basename(target_dir)
+    
+    config = user_config.copy()
+    
     # Smart defaults for everything else
     config['PROJECT_TYPE'] = "Python application"
-    config['MAIN_FILE'] = "main.py"
-    config['SERVICE_NAME'] = folder_name.replace('-', '_')
+    
+    # Use the PROJECT_NAME they entered to create the main file name
+    project_name = config['PROJECT_NAME']
+    # Convert project name to a valid Python filename
+    service_name = re.sub(r'[^a-zA-Z0-9_]', '_', project_name.lower().replace(' ', '_'))
+    service_name = re.sub(r'_+', '_', service_name).strip('_')  # Clean up multiple underscores
+    
+    config['MAIN_FILE'] = f"{service_name}.py"
+    config['SERVICE_NAME'] = service_name
     config['PORT'] = "5000"  # Flask default, commonly free
     config['SERVER_URL'] = "http://localhost:5000"
     config['HEALTH_ENDPOINT'] = "/health"
@@ -59,8 +78,8 @@ def get_user_input():
     config['MODULE_1_DESC'] = "Core business logic"
     config['MODULE_2'] = "utils"
     config['MODULE_2_DESC'] = "Utility functions"
-    config['REPO_URL'] = f"https://github.com/yourusername/{folder_name}"
-    config['PYTHON_COMMAND'] = "main.py"
+    config['REPO_URL'] = f"https://github.com/yourusername/{target_basename}"
+    config['PYTHON_COMMAND'] = config['MAIN_FILE']  # Use the actual main file name
     config['ADDITIONAL_REQUIREMENTS'] = "None"
     config['PROJECT_STATUS'] = "In Development"
     config['PROJECT_VERSION'] = "0.1.0"
@@ -77,6 +96,7 @@ def get_user_input():
     
     print(f"\n✅ Project: {config['PROJECT_NAME']}")
     print(f"✅ Type: {config['PROJECT_TYPE']}")
+    print(f"✅ Main file: {config['MAIN_FILE']}")
     print(f"✅ Server: {config['SERVER_URL']}")
     print("✅ Ready to start building!")
     
@@ -122,6 +142,13 @@ def initialize_project(template_dir, target_dir, config):
                 
             src_path = os.path.join(root, file)
             rel_path = os.path.relpath(src_path, template_dir)
+            
+            # Handle placeholder filenames
+            if '{{' in rel_path:
+                # Replace placeholders in path
+                for key, value in config.items():
+                    rel_path = rel_path.replace(f"{{{{{key}}}}}", value)
+            
             dst_path = os.path.join(target_dir, rel_path)
             
             # Create directory if needed
@@ -130,8 +157,9 @@ def initialize_project(template_dir, target_dir, config):
             # Copy file
             shutil.copy2(src_path, dst_path)
             
-            # Replace placeholders
-            if file.endswith(('.md', '.py', '.sh', '.txt', '.json', '.yml', '.yaml')):
+            # Replace placeholders in content (check the destination filename, not source)
+            dst_filename = os.path.basename(dst_path)
+            if dst_filename.endswith(('.md', '.py', '.sh', '.txt', '.json', '.yml', '.yaml')):
                 replace_placeholders(dst_path, config)
             
             print(f"✅ {rel_path}")
@@ -165,8 +193,11 @@ def main():
     template_dir = os.path.dirname(os.path.abspath(__file__))
     target_dir = sys.argv[1]
     
-    # Get configuration
-    config = get_user_input()
+    # Get user input first
+    user_config = get_user_input()
+    
+    # Generate full config based on target directory
+    config = get_project_config(target_dir, user_config)
     
     # Initialize project
     initialize_project(template_dir, target_dir, config)
