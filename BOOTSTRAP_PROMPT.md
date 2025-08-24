@@ -14,6 +14,7 @@
 ```bash
 ./manage.sh setup              # One-time environment setup
 ./manage.sh start              # Start {{SERVICE_NAME}}
+./scripts/create-repo.sh       # Create GitHub repository (--private for private)
 .venv/bin/python tests/quick_test.py  # Fast testing (2s)
 ./scripts/run-tests.sh         # Full testing (~30s)
 ```
@@ -21,6 +22,9 @@
 ## Git Workflow (AI + User Collaboration)
 
 ```bash
+# Optional: Create GitHub repository first
+./scripts/create-repo.sh       # Creates repo, sets remote, pushes
+
 # AI creates branch and makes changes
 ./scripts/create-branch.sh feature-name "Description of work"
 # ... AI implements feature ...

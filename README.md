@@ -73,6 +73,7 @@ my-awesome-project/
 │   ├── quick_test.py       # Fast development tests (2s)
 │   └── test_suite.py       # Comprehensive testing (30s+)
 ├── scripts/
+│   ├── create-repo.sh      # GitHub repository automation
 │   ├── create-branch.sh    # AI workflow: create feature branch
 │   ├── merge-to-main.sh    # AI workflow: test + merge + cleanup
 │   └── run-tests.sh        # Comprehensive test runner
@@ -88,10 +89,36 @@ my-awesome-project/
 
 The generated projects follow an AI-collaborative workflow:
 
-1. **AI creates feature branch**: `./scripts/create-branch.sh feature-name "Description"`
-2. **AI implements feature** with immediate testing feedback
-3. **User approves** the implementation
-4. **AI merges automatically**: `./scripts/merge-to-main.sh "Final message"`
+1. **Initialize project**: Create and set up your project locally
+2. **Create GitHub repository**: `./scripts/create-repo.sh` (optional: `--private`)
+3. **AI creates feature branch**: `./scripts/create-branch.sh feature-name "Description"`
+4. **AI implements feature** with immediate testing feedback
+5. **User approves** the implementation
+6. **AI merges automatically**: `./scripts/merge-to-main.sh "Final message"`
+
+### Repository Creation
+
+The template includes automated GitHub repository creation:
+
+```bash
+# Create a public repository (default)
+./scripts/create-repo.sh
+
+# Create a private repository
+./scripts/create-repo.sh --private
+```
+
+**Prerequisites**:
+
+- GitHub CLI installed (`brew install gh` or `apt install gh`)
+- Authenticated with GitHub (`gh auth login`)
+
+The script will:
+
+- ✅ Create the GitHub repository with your project name and description
+- ✅ Set up the remote origin automatically
+- ✅ Push your initial commit
+- ✅ Update any placeholder URLs in your project files
 
 ### Key Principles
 
