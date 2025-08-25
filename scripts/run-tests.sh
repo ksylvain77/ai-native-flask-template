@@ -32,6 +32,46 @@ fi
 
 # Quick development tests (no coverage)
 if [ "$1" = "quick" ]; then
+    echo "🚀 Running quick unit tests (no coverage)..."
+    $PYTHON_CMD -m pytest tests/ -m "unit" --tb=short -q --no-cov
+    exit 0
+fi
+
+# Template mode (for template itself - has placeholder tests)
+if [ "$1" = "template" ]; then
+    echo "🎭 Running template validation tests (no coverage requirement)..."
+    $PYTHON_CMD -m pytest tests/ -m "unit" --tb=short -q --no-cov
+    exit 0
+fi
+
+# Run appropriate test suite based on service availability
+if [ "$SERVICE_RUNNING" = true ]; then
+    echo "🧪 Running full test suite with coverage..."
+    $PYTHON_CMD -m pytest tests/ --cov-fail-under=70
+else
+    echo "🧪 Running unit tests only with coverage..."
+    $PYTHON_CMD -m pytest tests/ -m "unit" --cov-fail-under=50
+fi
+
+echo ""
+echo "📊 Coverage report generated in htmlcov/index.html"
+echo "💡 Tips:"
+echo "   • Run './scripts/run-tests.sh quick' for fast development testing"
+echo "   • Run './scripts/run-tests.sh template' for template validation"
+echo "   • Start service first for full integration testing"
+echo "   • View detailed coverage: open htmlcov/index.html"
+
+# Post-test health check
+if [ "$SERVICE_RUNNING" = true ]; then
+    echo ""
+    echo "🔄 Post-test service check..."
+    if curl -s "$BASE_URL$HEALTH_ENDPOINT" > /dev/null 2>&1; then
+        echo "✅ Service still responding after tests"
+    else
+        echo "⚠️  Service may have stopped during testing"
+    fi
+fi
+if [ "$1" = "quick" ]; then
     echo "� Running quick unit tests (no coverage)..."
     $PYTHON_CMD -m pytest tests/ -m "unit" --tb=short -q --no-cov
     exit 0

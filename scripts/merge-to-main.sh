@@ -29,24 +29,39 @@ echo "Branch: $CURRENT_BRANCH"
 echo "Message: $COMMIT_MESSAGE"
 echo ""
 
-# Step 1: Update documentation (if exists)
+# Step 1: Template validation (if this is the template itself)
+if [ -f "scripts/validate-template.sh" ]; then
+    echo "🔍 STEP 1: TEMPLATE VALIDATION"
+    echo "==============================="
+    echo "🧪 Running template self-validation..."
+    ./scripts/validate-template.sh
+    echo ""
+fi
+
+# Step 2: Update documentation (if exists)
 if [ -f "scripts/update-readme.sh" ]; then
-    echo "📝 STEP 1: AUTO-UPDATE DOCUMENTATION"
+    echo "📝 STEP 2: AUTO-UPDATE DOCUMENTATION"
     echo "======================================"
     ./scripts/update-readme.sh
     echo ""
 fi
 
-# Step 2: Run tests
-echo "🧪 STEP 2: PRE-MERGE TESTING"
+# Step 3: Run tests
+echo "🧪 STEP 3: PRE-MERGE TESTING"
 echo "=============================="
 if [ -f "scripts/run-tests.sh" ]; then
     echo "🔍 Running comprehensive test suite..."
-    ./scripts/run-tests.sh
+    # Check if this is the template itself (has placeholder tests)
+    if [ -f "scripts/validate-template.sh" ] && grep -q "Template test - replace" tests/test_template.py 2>/dev/null; then
+        echo "🎭 Running in template mode (placeholder tests detected)..."
+        ./scripts/run-tests.sh template
+    else
+        ./scripts/run-tests.sh
+    fi
 else
     echo "⚠️  No test suite found - skipping tests"
 fi
-echo "✅ All tests passed!"
+echo "✅ All validations and tests passed!"
 echo ""
 
 # Step 3: Commit and backup
