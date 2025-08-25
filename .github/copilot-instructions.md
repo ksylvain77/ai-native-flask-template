@@ -35,15 +35,16 @@ scripts\merge-to-main.bat "Final commit message"
 ### **Testing Requirements (MANDATORY)**
 
 - **Quick Tests**:
-  - Linux/macOS: `.venv/bin/python tests/quick_test.py`
-  - Windows: `.venv\Scripts\python.exe tests\quick_test.py`
+  - Linux/macOS: `./scripts/run-tests.sh quick`
+  - Windows: `scripts\run-tests.bat quick`
 - **Full Tests**:
-  - Linux/macOS: `./scripts/run-tests.sh` or `python scripts/run-tests.py`
+  - Linux/macOS: `./scripts/run-tests.sh`
   - Windows: `scripts\run-tests.bat`
-- **4-Phase Testing**: Backend → API → Contract → Frontend
-- **Smart Coverage**: Only business logic functions require comprehensive testing
-- **Auto-Exclusion**: Utility functions (format_response, sanitize_filename, etc.) automatically excluded
-- **Completion Criteria**: 100% test pass rate for business logic required
+- **4-Phase Testing**: Backend → API → Contract → Frontend using pytest
+- **Industry Standard**: pytest + coverage.py for reliable testing
+- **Smart Coverage**: 70% coverage target for business logic in `modules/`
+- **Auto-Exclusion**: Test files, scripts, venv automatically excluded
+- **Completion Criteria**: All pytest tests pass with coverage threshold met
 
 ### **Environment Requirements**
 
@@ -74,26 +75,28 @@ scripts\merge-to-main.bat "Final commit message"
 ### Adding Features (DRY Pattern)
 
 1. **Backend**: Add function to appropriate module in `modules/`
-2. **Test**: Add to `test_suite.py` using dictionary format
+2. **Test**: Add pytest tests to `tests/test_template.py` using standard format
 3. **API**: Add endpoint to `{{MAIN_FILE}}`
 4. **Frontend**: Update templates/static if needed
 
-### Testing Approach (4-Phase Methodology)
+### Testing Approach (4-Phase Methodology with Pytest)
 
 ```python
-# Backend test - DRY format
-"test_name": {
-    "description": "Test description",
-    "module": "modules.your_module",
-    "function": "your_function",
-    "assertions": ["assert 'field' in result"]
-}
+# Backend test - pytest format
+@pytest.mark.unit
+def test_your_function():
+    """Test description"""
+    from modules.your_module import your_function
+    result = your_function()
+    assert 'field' in result
 
-# API test - simple dictionary
-"api_name": {
-    "endpoint": "/api/your/endpoint",
-    "expected_fields": ["field1", "field2"]
-}
+# API test - integration testing
+@pytest.mark.integration
+def test_api_endpoint(service_check):
+    """Test API endpoint"""
+    response = requests.get(f"{BASE_URL}/api/your/endpoint")
+    assert response.status_code == 200
+    assert 'expected_field' in response.json()
 ```
 
 ## Project Structure

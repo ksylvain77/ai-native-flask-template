@@ -1,0 +1,35 @@
+# Coverage configuration for {{PROJECT_NAME}}
+# Comprehensive coverage for all business logic
+
+[run]
+source = modules
+omit = 
+    # Virtual environment
+    .venv/*
+    venv/*
+    
+    # Test files themselves
+    tests/*
+    
+    # Cache and build files
+    __pycache__/*
+    *.pyc
+    
+    # Config and utility scripts (not business logic)
+    scripts/*
+
+[report]
+# Standard target: 70% coverage for comprehensive testing
+fail_under = 70
+precision = 1
+skip_covered = false
+skip_empty = true
+
+[html]
+# HTML coverage report directory
+directory = htmlcov
+
+[term]
+# Terminal report configuration
+skip_covered = false
+show_missing = true
