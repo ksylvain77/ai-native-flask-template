@@ -1,183 +1,201 @@
-# AI-Native Flask Template
+# AI Project Inception Template
 
-A Flask application template designed for AI-collaborative development with smart defaults, automated workflows, and comprehensive testing.
+An AI-powered template system that discovers user requirements, makes intelligent technology decisions, and generates complete software projects with full SDLC automation.
 
-## Features
+## Overview
 
-- 🌐 **Production-Ready Flask**: Complete Flask app with health endpoints and proper structure
-- 🤖 **AI-Optimized**: Structured for seamless AI collaboration
-- 🚀 **Smart Defaults**: Only asks for project name - handles the rest
-- 📁 **Project-Based Naming**: Uses your project name instead of generic `main.py`
-- 🧪 **4-Phase Testing**: Backend → API → Contract → Frontend
-- 🔄 **Automated Workflows**: Git branching, testing, and merging scripts
-- 📦 **Complete Setup**: Virtual environment, dependencies, and structure
+This template creates an **AI Project Inception System** - not just another project template, but an intelligent system that:
 
-## Prerequisites
-
-- Python 3.8+ installed on your system
-- Git (for cloning and project workflows)
-- Terminal/Command line access
+1. **Discovers Requirements** through AI-driven conversation
+2. **Makes Technology Decisions** based on intelligent analysis
+3. **Generates Complete Projects** with full automation and testing
 
 ## Quick Start
 
-git clone https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git
-git clone https://github.com/ksylvain77/ai-native-flask-template.git
+### Option 1: Use as GitHub Template
 
-### Recommended: Generate Projects Outside the Template Directory
-
-**1. Download or clone this template repository somewhere safe (e.g., `~/templates/ai-native-flask-template`).**
-
-**2. Whenever you want to create a new project, go to the folder where you want your project to live (e.g., `~/projects/`):**
+1. Click the green **"Use this template"** button above
+2. Clone your new repository
+3. Run the AI Project Inception process:
 
 ```bash
-# Example: create a new project called my-awesome-project in ~/projects
-cd ~/projects
-python3 ~/templates/ai-native-flask-template/init_project.py my-awesome-project
-cd my-awesome-project
-python manage.py setup
-python manage.py start
+cd your-new-repository
+python inception.py
 ```
 
-**This keeps the template repo clean and lets you generate as many projects as you want, anywhere you want.**
-
----
-
-### Option: Use as GitHub Template
-
-Click the green **"Use this template"** button above, then:
+### Option 2: Clone and Generate
 
 ```bash
-# 1. Clone your new repository
-git clone https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git
-cd YOUR-REPO-NAME
+# Clone this template
+git clone https://github.com/YOUR-USERNAME/ai-project-inception-template.git
+cd ai-project-inception-template
 
-# 2. Initialize your project (this transforms the template into a working app)
-python3 init_project.py
+# Run the AI Project Inception process
+python inception.py
 
-# 3. Start developing
-python manage.py setup
-python manage.py start
+# Follow the AI-guided conversation to define your project
+# AI will generate a complete project based on your needs
 ```
 
-**That's it!** Your project will be running at `http://localhost:5000` with a complete development environment ready for AI collaboration.
+## How It Works
+
+### Phase 1: AI Requirements Discovery
+
+The **Requirements Agent** conducts an intelligent conversation:
+
+- Asks follow-up questions based on your responses
+- Understands context and constraints
+- Captures complete project requirements
+- No hardcoded questions - pure AI conversation
+
+### Phase 2: AI Technology Decision
+
+The **Architect Agent** analyzes requirements and decides:
+
+- Optimal technology stack (Python, Node.js, Go, etc.)
+- Project type (CLI tool, web app, data pipeline, etc.)
+- Architecture patterns (monolith, microservices, etc.)
+- Infrastructure recommendations
+
+### Phase 3: AI Project Generation
+
+The **Generator Agent** creates a complete project:
+
+- Proper project structure for chosen technology
+- Working code with core functionality
+- Complete testing framework
+- Git automation and SDLC workflows
+- Documentation and deployment guides
 
 ## What Gets Generated
 
+Based on AI decisions, you might get:
+
+**CLI Tool (Python):**
+
 ```
-my-awesome-project/
-├── my_awesome_project.py    # Main Flask application (named after your project)
-├── modules/
-│   ├── core.py             # Core business logic
-│   └── utils.py            # Utility functions
-├── tests/
-│   ├── quick_test.py       # Fast development tests (2s)
-│   └── test_suite.py       # Comprehensive testing (30s+)
-├── scripts/
-│   ├── create-repo.sh      # GitHub repository automation
-│   ├── create-branch.sh    # AI workflow: create feature branch
-│   ├── merge-to-main.sh    # AI workflow: test + merge + cleanup
-│   └── run-tests.sh        # Comprehensive test runner
-├── .github/
-│   └── copilot-instructions.md  # AI collaboration guide
-├── requirements.txt        # Python dependencies
-├── manage.sh              # Project management script
-├── .gitignore             # Comprehensive Git ignore rules
-└── README.md              # Project-specific documentation
+my-awesome-tool/
+├── my_awesome_tool.py       # Main CLI application
+├── lib/                     # Core logic modules
+├── tests/                   # Pytest testing suite
+├── scripts/                 # Git automation
+└── README.md               # Usage documentation
 ```
+
+**Web Application (Node.js):**
+
+```
+my-web-app/
+├── src/
+│   ├── app.js              # Express.js application
+│   ├── routes/             # API endpoints
+│   └── models/             # Data models
+├── tests/                  # Jest testing suite
+├── scripts/                # Git automation
+└── package.json            # Dependencies
+```
+
+**Data Pipeline (Python):**
+
+```
+my-data-pipeline/
+├── pipeline.py             # Main data processing
+├── processors/             # Data transformation modules
+├── tests/                  # Pytest testing suite
+├── scripts/                # Git automation
+└── requirements.txt        # Dependencies
+```
+
+## Universal Features
+
+Every generated project includes:
+
+- ✅ **Complete Git Automation** - Branch creation, testing, merging scripts
+- ✅ **AI Collaboration Ready** - Bootstrap prompts and context files
+- ✅ **Testing Framework** - Appropriate testing for chosen technology
+- ✅ **Cross-Platform Support** - Works on Linux, macOS, Windows
+- ✅ **Documentation** - README, setup guides, API docs
+- ✅ **SDLC Automation** - Complete development lifecycle support
 
 ## AI-Native Development Workflow
 
-The generated projects follow an AI-collaborative workflow:
-
-1. **Initialize project**: Create and set up your project locally
-2. **Create GitHub repository**: `./scripts/create-repo.sh` (optional: `--private`)
-3. **AI creates feature branch**: `./scripts/create-branch.sh feature-name "Description"`
-4. **AI implements feature** with immediate testing feedback
-5. **User approves** the implementation
-6. **AI merges automatically**: `./scripts/merge-to-main.sh "Final message"`
-
-### Repository Creation
-
-The template includes automated GitHub repository creation:
+Generated projects follow AI-collaborative patterns:
 
 ```bash
-# Create a public repository (default)
-./scripts/create-repo.sh
+# AI discovers requirements and generates project
+python inception.py
 
-# Create a private repository
-./scripts/create-repo.sh --private
+# AI creates feature branches
+./scripts/create-branch.sh feature-name "Description"
+
+# AI implements features with testing
+# User approves changes
+
+# AI merges automatically
+./scripts/merge-to-main.sh "Final commit message"
 ```
 
-**Prerequisites**:
+## Template Architecture
 
-- GitHub CLI installed (`brew install gh` or `apt install gh`)
-- Authenticated with GitHub (`gh auth login`)
-
-The script will:
-
-- ✅ Create the GitHub repository with your project name and description
-- ✅ Set up the remote origin automatically
-- ✅ Push your initial commit
-- ✅ Update any placeholder URLs in your project files
-
-### Key Principles
-
-- **Merge as You Go**: Main branch always working, immediate integration
-- **Test-Driven**: 100% test pass rate required before merge
-- **Documentation-Driven**: Auto-maintained docs with live system data
-
-## Template Customization
-
-The template uses placeholder replacement for full customization:
-
-- `{{PROJECT_NAME}}` → Your project name
-- `{{PROJECT_DESCRIPTION}}` → Your project description
-- `{{MAIN_FILE}}` → `your_project_name.py`
-- `{{SERVICE_NAME}}` → `your_project_name`
-
-All generated files are fully functional with proper Flask setup, testing framework, and development scripts.
-
-## Requirements
-
-- Python 3.8+
-- Git (for generated project workflows)
-
-## Generated Project Features
-
-Each generated project includes:
-
-- ✅ **Working Flask application** with health endpoints
-- ✅ **Complete test suite** with 4-phase methodology
-- ✅ **Virtual environment setup** with dependencies
-- ✅ **Git workflow automation** for AI collaboration
-- ✅ **Proper .gitignore** for Python projects
-- ✅ **AI collaboration guides** in `.github/copilot-instructions.md`
+```
+ai-project-inception-template/
+├── inception.py             # Main AI orchestrator
+├── agents/                  # AI agent system
+│   ├── requirements_agent/  # Conversation and discovery
+│   ├── architect_agent/     # Technology decisions
+│   └── generator_agent/     # Project creation
+├── templates/               # Project generation templates
+│   ├── python_cli/
+│   ├── python_web/
+│   ├── nodejs_web/
+│   └── data_pipeline/
+├── scripts/                 # Universal automation
+└── docs/                    # Template documentation
+```
 
 ## Examples
 
 ```bash
-# Create a blog API
-python3 init_project.py blog-api
-# Generates: blog_api.py as Flask main file
+# Business user with team coordination needs
+python inception.py
+# → AI discovers: "team status tracking"
+# → AI decides: "Slack bot + simple dashboard"
+# → AI generates: Python Slack app project
 
-# Create a user management service
-python3 init_project.py user-service
-# Generates: user_service.py as Flask main file
+# Developer with data processing needs
+python inception.py
+# → AI discovers: "CSV to PDF reports"
+# → AI decides: "Python CLI tool with pandas"
+# → AI generates: CLI tool with data processing
 
-# Create any Flask web service
-python3 init_project.py my-api
-# Generates: my_api.py as Flask main file
+# Startup with customer management needs
+python inception.py
+# → AI discovers: "customer relationship tracking"
+# → AI decides: "Web app with database"
+# → AI generates: Node.js/React full-stack project
 ```
 
-Each generated project is a complete Flask application with endpoints, testing, and AI-collaborative workflows.
+## Core Philosophy
+
+- **Intelligence Over Templates** - AI makes decisions, not predefined rules
+- **Problem-First** - Start with user needs, not technology assumptions
+- **Complete Solutions** - Generate working projects, not just scaffolds
+- **AI-Native** - Every project optimized for AI collaboration
+- **Universal Automation** - Same SDLC workflow regardless of technology
+
+## Requirements
+
+- Python 3.8+ (for the inception system)
+- Git (for generated project workflows)
+- AI/LLM access (for intelligent conversation and decision making)
 
 ## Contributing
 
-This template itself follows the AI-native methodology. To improve the template:
+This template follows AI-native development methodology:
 
-1. Create issues for template improvements
-2. Test changes with multiple generated projects
-3. Ensure 100% success rate for generated project workflows
+1. Use the git automation scripts for all changes
+2. Test with multiple project types and technologies
+3. Ensure AI agents work correctly across different scenarios
 4. Update documentation to reflect changes
 
-**Philosophy**: The template should generate projects that work perfectly out-of-the-box with zero manual intervention required.
+**Philosophy**: The template should generate projects that work perfectly out-of-the-box with intelligent technology choices based on user needs.

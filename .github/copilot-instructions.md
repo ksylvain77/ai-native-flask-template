@@ -20,7 +20,7 @@ This is a **{{PROJECT_TYPE}}** project using AI-Native Development methodology.
 # Windows:
 scripts\create-branch.bat feature-name "Description of work"
 
-# 2. AI implements feature following DRY patterns
+# 2. AI implements feature following project patterns
 
 # 3. AI shows user results and waits for approval
 
@@ -36,29 +36,23 @@ scripts\merge-to-main.bat "Final commit message"
 
 - **Quick Tests**:
   - Linux/macOS: `./scripts/run-tests.sh quick`
-  - Windows: `scripts\run-tests.bat quick`
+  - Windows: `scripts
+un-tests.bat quick`
 - **Full Tests**:
   - Linux/macOS: `./scripts/run-tests.sh`
-  - Windows: `scripts\run-tests.bat`
-- **4-Phase Testing**: Backend → API → Contract → Frontend using pytest
-- **Industry Standard**: pytest + coverage.py for reliable testing
-- **Smart Coverage**: 70% coverage target for business logic in `modules/`
-- **Auto-Exclusion**: Test files, scripts, venv automatically excluded
-- **Completion Criteria**: All pytest tests pass with coverage threshold met
+  - Windows: `scripts
+un-tests.bat`
+- **Testing Strategy**: Appropriate to project type ({{TECH_STACK}} + {{PROJECT_TYPE}})
+- **Quality Standards**: Maintain test coverage appropriate for project complexity
+- **Completion Criteria**: All tests pass before merge
 
 ### **Environment Requirements**
 
-- **Python**:
-  - Linux/macOS: Always use `.venv/bin/python` (never system python)
-  - Windows: Use `.venv\Scripts\python.exe`
-- **Server**: {{SERVER_URL}}
-- **Port Check**:
-  - Linux/macOS: `netstat -tuln | grep :{{PORT}}` (should be empty)
-  - Windows: `netstat -an | findstr :{{PORT}}` (should be empty)
-- **Setup**:
+- **Technology Stack**: {{TECH_STACK}}
+- **Environment Setup**:
   - Linux/macOS: `./manage.sh setup` or `python manage.py setup`
   - Windows: `manage.bat setup`
-- **Start**:
+- **Project Start**:
   - Linux/macOS: `./manage.sh start` or `python manage.py start`
   - Windows: `manage.bat start`
 
@@ -72,41 +66,17 @@ scripts\merge-to-main.bat "Final commit message"
 
 ## Development Patterns
 
-### Adding Features (DRY Pattern)
+### Adding Features
 
-1. **Backend**: Add function to appropriate module in `modules/`
-2. **Test**: Add pytest tests to `tests/test_template.py` using standard format
-3. **API**: Add endpoint to `{{MAIN_FILE}}`
-4. **Frontend**: Update templates/static if needed
+1. **Core Logic**: Add functionality to appropriate modules
+2. **Testing**: Create tests appropriate for {{PROJECT_TYPE}}
+3. **Integration**: Connect components following {{TECH_STACK}} patterns
+4. **Documentation**: Update relevant documentation
 
-### Testing Approach (4-Phase Methodology with Pytest)
-
-```python
-# Backend test - pytest format
-@pytest.mark.unit
-def test_your_function():
-    """Test description"""
-    from modules.your_module import your_function
-    result = your_function()
-    assert 'field' in result
-
-# API test - integration testing
-@pytest.mark.integration
-def test_api_endpoint(service_check):
-    """Test API endpoint"""
-    response = requests.get(f"{BASE_URL}/api/your/endpoint")
-    assert response.status_code == 200
-    assert 'expected_field' in response.json()
-```
-
-## Project Structure
+### Project Structure
 
 ```
-{{MAIN_FILE}}                 # Application entry point
-modules/                      # Core business logic
-templates/                    # UI templates
-static/                       # Static assets
-tests/                        # Testing framework
+{{PROJECT_STRUCTURE}}         # Generated based on project type and tech stack
 scripts/                      # Automation scripts
 BOOTSTRAP_PROMPT.md           # Quick AI context
 ROADMAP.md                    # Development roadmap and progress
@@ -119,8 +89,8 @@ PROJECT_GOALS.md              # Requirements and discovery results
 - **Roadmap**: ROADMAP.md tracks development phases and progress
 - **Goals**: PROJECT_GOALS.md stores requirements and discovery results
 - **Workflow**: Always use automation scripts, never manual Git
-- **Testing**: Complete all 4 phases before feature completion
+- **Testing**: Complete testing appropriate to project type before feature completion
 - **Documentation**: Auto-maintained, stays current with system state
 - **Error Handling**: Structured for AI debugging and self-healing
 
-**Success Criteria**: Feature complete when automated workflow passes with 100% test coverage.
+**Success Criteria**: Feature complete when automated workflow passes with appropriate test coverage.

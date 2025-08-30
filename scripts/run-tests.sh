@@ -16,7 +16,15 @@ if [ -z "$VIRTUAL_ENV" ] && [ -d ".venv" ]; then
     echo "⚠️  Virtual environment not active. Using .venv/bin/python"
     PYTHON_CMD=".venv/bin/python"
 else
-    PYTHON_CMD="python"
+    # Try python3 first, fall back to python
+    if command -v python3 >/dev/null 2>&1; then
+        PYTHON_CMD="python3"
+    elif command -v python >/dev/null 2>&1; then
+        PYTHON_CMD="python"
+    else
+        echo "❌ No Python interpreter found"
+        exit 1
+    fi
 fi
 
 # Check if service is running (for integration tests)
@@ -40,7 +48,38 @@ fi
 # Template mode (for template itself - has placeholder tests)
 if [ "$1" = "template" ]; then
     echo "🎭 Running template validation tests (no coverage requirement)..."
-    $PYTHON_CMD -m pytest tests/ -m "unit" --tb=short -q --no-cov
+    if [ -d "tests/" ]; then
+        $PYTHON_CMD -m pytest tests/ -m "unit" --tb=short -q --no-cov
+    else
+        echo "✅ No tests directory - template validation mode"
+        echo "📋 Template tests will be in generated projects"
+    fi
+    exit 0
+fi
+
+# AI Project Inception Template mode - check template components
+if [ ! -d "tests/" ] && [ -f "inception.py" ]; then
+    echo "🤖 AI Project Inception Template Mode"
+    echo "🧪 Running template component validation..."
+    
+    # Test inception.py syntax
+    if $PYTHON_CMD -m py_compile inception.py; then
+        echo "✅ inception.py syntax valid"
+    else
+        echo "❌ inception.py syntax errors"
+        exit 1
+    fi
+    
+    # Test that template generates valid documentation
+    if [ -f "PROJECT_README.md" ] && [ -f "BOOTSTRAP_PROMPT.md" ]; then
+        echo "✅ Template documentation structure valid"
+    else
+        echo "❌ Missing template documentation"
+        exit 1
+    fi
+    
+    echo "✅ Template validation passed"
+    echo "📋 This template will generate projects with full test suites"
     exit 0
 fi
 

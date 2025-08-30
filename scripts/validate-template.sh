@@ -48,23 +48,19 @@ log_info "Validating template structure..."
 
 REQUIRED_FILES=(
     "README.md"
-    "requirements.txt" 
-    "init_project.py"
+    "PROJECT_README.md"
+    "BOOTSTRAP_PROMPT.md"
+    "PROJECT_GOALS.md"
+    "ROADMAP.md"
+    "AI_PROJECT_INCEPTION_ROADMAP.md"
+    "PROOF_OF_CONCEPT_RESULTS.md"
     "manage.py"
     "manage.sh"
-    "ROADMAP.md"
-    "PROJECT_GOALS.md"
-    "BOOTSTRAP_PROMPT.md"
+    "inception.py"
     "scripts/create-branch.sh"
     "scripts/merge-to-main.sh"
     "scripts/run-tests.sh"
-    "tests/test_template.py"
-    "modules/{{MODULE_1}}.py"
-    "modules/{{MODULE_2}}.py"
-    "{{MAIN_FILE}}"
-    "pytest.ini"
-    ".coveragerc"
-    "TESTING.md"
+    ".github/copilot-instructions.md"
 )
 
 for file in "${REQUIRED_FILES[@]}"; do
@@ -81,11 +77,11 @@ log_info "Checking template variables..."
 
 TEMPLATE_VARS=(
     "{{PROJECT_NAME}}"
-    "{{SERVER_URL}}"
-    "{{MAIN_FILE}}"
-    "{{MODULE_1}}"
-    "{{MODULE_2}}"
-    "{{HEALTH_ENDPOINT}}"
+    "{{PROJECT_TYPE}}"
+    "{{TECH_STACK}}"
+    "{{ARCHITECTURE_PATTERN}}"
+    "{{PROJECT_DESCRIPTION}}"
+    "{{TESTING_STRATEGY}}"
 )
 
 # Check if variables are documented somewhere
@@ -95,54 +91,43 @@ else
     log_warn "No template documentation found"
 fi
 
-# Test 5: Requirements.txt Format
+# Test 5: Git Automation Scripts
 echo ""
-log_info "Validating requirements.txt format..."
+log_info "Validating git automation..."
 
-if [ -f "requirements.txt" ]; then
-    if grep -q "^flask" requirements.txt && grep -q "^pytest" requirements.txt; then
-        log_pass "requirements.txt has core dependencies"
-    else
-        log_warn "requirements.txt missing core dependencies"
-    fi
-    
-    # Check for version pinning
-    if grep -q ">=" requirements.txt; then
-        log_pass "requirements.txt uses version pinning"
-    else
-        log_warn "requirements.txt has no version constraints"
-    fi
+if [ -f "scripts/create-branch.sh" ] && [ -f "scripts/merge-to-main.sh" ]; then
+    log_pass "Core git automation scripts present"
 else
-    log_fail "requirements.txt not found"
+    log_fail "Missing critical git automation scripts"
 fi
 
-# Test 6: Test Framework Validation
+# Test 6: AI Project Inception System
 echo ""
-log_info "Testing pytest configuration..."
+log_info "Validating AI Project Inception components..."
 
-if [ -f "pytest.ini" ]; then
-    log_pass "pytest.ini exists"
-    if grep -q "testpaths" pytest.ini && grep -q "addopts" pytest.ini; then
-        log_pass "pytest.ini properly configured"
+if [ -f "inception.py" ]; then
+    log_pass "inception.py exists"
+    if python3 -m py_compile inception.py 2>/dev/null; then
+        log_pass "inception.py syntax valid"
     else
-        log_warn "pytest.ini missing key configurations"
+        log_fail "inception.py has syntax errors"
     fi
 else
-    log_fail "pytest.ini missing"
+    log_warn "inception.py not implemented yet"
 fi
 
-if [ -f ".coveragerc" ]; then
-    log_pass ".coveragerc exists"
-    if grep -q "source = modules" .coveragerc; then
-        log_pass ".coveragerc properly configured"
-    else
-        log_warn ".coveragerc missing modules configuration"
-    fi
+# Test 7: Template Variable System
+echo ""
+log_info "Testing template variable system..."
+
+# Check that template files contain variables
+if grep -r "{{" PROJECT_README.md BOOTSTRAP_PROMPT.md PROJECT_GOALS.md ROADMAP.md >/dev/null 2>&1; then
+    log_pass "Template variables found in documentation"
 else
-    log_fail ".coveragerc missing"
+    log_warn "Template variables missing from documentation"
 fi
 
-# Test 7: Mock Roadmap Update Test
+# Test 8: Mock Roadmap Update Test
 echo ""
 log_info "Testing roadmap update mechanism..."
 
@@ -167,14 +152,14 @@ else
     log_warn "update-roadmap.sh not found (may not be implemented yet)"
 fi
 
-# Test 8: Cross-Platform Compatibility
+# Test 9: Cross-Platform Compatibility
 echo ""
 log_info "Checking cross-platform support..."
 
 if [ -f "scripts/run-tests.bat" ] && [ -f "manage.bat" ]; then
     log_pass "Windows batch files present"
 else
-    log_warn "Windows batch files missing"
+    log_warn "Windows batch files missing (AI Project Inception will generate project-specific files)"
 fi
 
 # Summary
